@@ -1,4 +1,6 @@
+
 require "vagrant-plugin-bundler/config"
+require "vagrant-plugin-bundler/errors"
 
 describe VagrantPlugins::PluginBundler::Config do
   let(:config) { described_class.new }
@@ -44,16 +46,14 @@ describe VagrantPlugins::PluginBundler::Config do
         end
       end
       context "with same plugin twice" do
-        before do
-          config.depend 'foo', '1.0.0'
-          config.depend 'foo', '1.1.0'
-          config.finalize!
-        end
-        it "should contain the plugin only once" do
-          config.dependencies.size.should == 1
-        end
-        it "the last one should win" do
-          config.dependencies.should == { 'foo' => '1.1.0' }
+        it "should fail" do
+          begin
+            config.depend 'foo', '1.0.0'
+            config.depend 'foo', '1.1.0'
+            fail "it should have raised 'DuplicatePluginDefinitionError'"
+          rescue VagrantPlugins::PluginBundler::Errors::DuplicatePluginDefinitionError
+            # expected
+          end
         end
       end
     end

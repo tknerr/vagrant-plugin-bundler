@@ -11,7 +11,10 @@ module VagrantPlugins
       end
 
       def depend(name, version)
-        # TODO: what if plugin version already defined?
+        if @dependencies[name]
+          # raise early here because our hook has to run BEFORE validation
+          raise Errors::DuplicatePluginDefinitionError, :plugin => name
+        end
         @dependencies[name] = version
       end
     end

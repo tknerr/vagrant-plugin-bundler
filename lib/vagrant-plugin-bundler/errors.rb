@@ -11,6 +11,10 @@ module VagrantPlugins
         error_key(:plugin_not_found)
       end
 
+      class DuplicatePluginDefinitionError < VagrantPluginBundlerError
+        error_key(:duplicate_plugin_definition)
+      end
+
       class PluginVersionError < VagrantPluginBundlerError
         error_key(:plugin_version_error)
       end
