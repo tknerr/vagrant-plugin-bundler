@@ -13,21 +13,21 @@ module VagrantPlugins
           
           required_plugins = env[:machine].config.plugin.dependencies
           
-          missing_plugins, good_plugins = required_plugins.partition do |plugin, version|
-            required_plugins[plugin] != installed_plugins[plugin]
+          missing_plugins, good_plugins = required_plugins.partition do |name, version|
+            required_plugins[name] != installed_plugins[name]
           end
           
           unless missing_plugins.empty?
-            errors = missing_plugins.map do |plugin, required_version| 
-              installed_version = installed_plugins[plugin]
+            errors = missing_plugins.map do |name, required_version|
+              installed_version = installed_plugins[name]
               if installed_version
                 I18n.t('vagrant_plugin_bundler.errors.plugin_version_error', 
-                  :plugin => plugin,
+                  :plugin => name,
                   :required_version => required_version,
                   :installed_version => installed_version)
               else
                 I18n.t('vagrant_plugin_bundler.errors.plugin_not_found',
-                  :plugin => plugin, 
+                  :plugin => name,
                   :required_version => required_version)
               end
             end
