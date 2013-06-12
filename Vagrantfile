@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
 
   config.plugin.depend 'vagrant-omnibus', '1.0.2'
  # config.plugin.depend 'vagrant-omnibus'
-  config.plugin.depend 'vagrant-foo', '1.0.2'
+#  config.plugin.depend 'vagrant-foo', '1.0.2'
 
   # we require vagrant-omnibus plugin!
   config.omnibus.chef_version = "11.4.4"
