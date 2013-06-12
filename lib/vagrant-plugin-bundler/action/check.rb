@@ -39,15 +39,13 @@ module VagrantPlugins
         end
 
         def installed_plugins
-          unless @installed_plugins
-            #`D:/Repos/_github/bills-kitchen/target/build/tools/vagrant/HashiCorp/Vagrant/bin/vagrant plugin list`
-            `vagrant plugin list`.each_line do |line|
-              name, version = line.match(/\s*(\S+)\s*\((\S+)\)/).captures
-              @installed_plugins[name] = version
-            end
+          @installed_plugins ||= begin
+            #output = `D:/Repos/_github/bills-kitchen/target/build/tools/vagrant/HashiCorp/Vagrant/bin/vagrant plugin list`
+            output = `vagrant plugin list`
+            Hash[output.each_line.map { |line| name, version = line.match(/\s*(\S+)\s*\((\S+)\)/).captures }]
           end
-          @installed_plugins
         end
+
       end
     end
   end
