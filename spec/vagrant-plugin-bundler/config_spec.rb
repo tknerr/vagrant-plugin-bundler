@@ -5,11 +5,6 @@ require "vagrant-plugin-bundler/errors"
 describe VagrantPlugins::PluginBundler::Config do
   let(:config) { described_class.new }
 
-  # Ensure tests are not affected by AWS credential environment variables
-  before :each do
-    ENV.stub(:[] => nil)
-  end
-
   describe "config.dependencies" do
 
     context "when nothing specified" do
