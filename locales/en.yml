@@ -2,11 +2,10 @@ en:
   vagrant_plugin_bundler:
     errors:
       plugin_not_found: |-
-        Version %{required_version} of %{plugin} required. No version found.
+        Version %{required_version} of %{plugin} required. No version found. 
+
+        => run `vagrant plugin install %{plugin} --plugin-version %{required_version}` to fix this
       plugin_version_error: |-
         Version %{required_version} of %{plugin} required. Found %{installed_version}.
 
-
-
-
-
+        => run `vagrant plugin install %{plugin} --plugin-version %{required_version}` to fix this
