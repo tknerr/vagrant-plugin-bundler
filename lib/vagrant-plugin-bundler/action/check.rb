@@ -21,23 +21,28 @@ module VagrantPlugins
             @installed_plugins[name]=version
           end
 
-          env[:machine].config.plugin.dependencies.each do |plugin, required_version|
-
-            installed_version = @installed_plugins[plugin]
-            
-            unless installed_version
-              raise Errors::PluginNotFoundError, 
-                :required_version => required_version, 
-                :plugin => plugin
+          required_plugins = env[:machine].config.plugin.dependencies
+          
+          missing_plugins,good_plugins = required_plugins.partition do |plugin,version|
+            required_plugins[plugin] != @installed_plugins[plugin]
+          end
+          
+          unless missing_plugins.empty?
+            errors = missing_plugins.map do |plugin, required_version| 
+              installed_version = @installed_plugins[plugin]
+              if installed_version
+                I18n.t('vagrant_plugin_bundler.errors.plugin_version_error', 
+                  :plugin => plugin,
+                  :required_version => required_version,
+                  :installed_version => installed_version)
+              else
+                I18n.t('vagrant_plugin_bundler.errors.plugin_not_found',
+                  :plugin => plugin, 
+                  :required_version => required_version)
+              end
             end
-            
-            if required_version != installed_version
-              raise Errors::PluginVersionError, 
-                :required_version => required_version, 
-                :plugin => plugin,
-                :installed_version => installed_version
-            end
-          end       
+            raise Errors::PluginsNotFoundError, :errors => errors.join("\n")
+          end
 
           # continue if ok
           @app.call(env)
