@@ -1,0 +1,17 @@
+# OS-specific
+.DS_Store
+
+# Bundler/Rubygems
+*.gem
+.bundle
+pkg/*
+tags
+Gemfile.lock
+
+# Vagrant
+.vagrant
+!example_box/Vagrantfile
+
+# Berkshelf
+cookbooks
+Berksfile.lock

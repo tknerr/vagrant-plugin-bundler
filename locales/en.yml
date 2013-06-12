@@ -1,0 +1,12 @@
+en:
+  vagrant_plugin_bundler:
+    errors:
+      plugin_not_found: |-
+        Version %{required_version} of %{plugin} required. No version found.
+      plugin_version_error: |-
+        Version %{required_version} of %{plugin} required. Found %{installed_version}.
+
+
+
+
+
