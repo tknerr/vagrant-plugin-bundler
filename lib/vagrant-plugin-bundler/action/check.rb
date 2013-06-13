@@ -1,4 +1,3 @@
-
 module VagrantPlugins
   module PluginBundler
     module Action
@@ -11,7 +10,7 @@ module VagrantPlugins
 
         def call(env)
           
-          required_plugins = env[:machine].config.plugin.dependencies
+          required_plugins = required_plugins(env)
           
           missing_plugins, good_plugins = required_plugins.partition do |name, version|
             required_plugins[name] != installed_plugins[name]
@@ -46,6 +45,9 @@ module VagrantPlugins
           end
         end
 
+        def required_plugins(env)
+          env[:machine].config.plugin.dependencies
+        end
       end
     end
   end
