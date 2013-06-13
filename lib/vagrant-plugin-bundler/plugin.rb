@@ -20,9 +20,13 @@ module VagrantPlugins
 
       config "plugin" do
         setup_i18n
-        
         require_relative "config"
         Config
+      end
+
+      command "bundle" do
+        require_relative "command"
+        Command
       end
 
       # This initializes the internationalization strings.
