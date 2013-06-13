@@ -45,4 +45,16 @@ describe VagrantPlugins::PluginBundler::Action::Check do
         /Version 1.2.3 of foo required. Plugin not installed/)
     end
   end
+
+  context "when multiple errors" do
+    before do
+      check.stub(:installed_plugins => {'foo' => '0.0.1', 'bar' => '1.2.3'})
+      check.stub(:required_plugins => {'foo' => '1.2.3', 'baz' => '1.2.3', })
+    end
+    it "should list all errors" do
+      expect { check.call(env) }.to raise_error(
+        VagrantPlugins::PluginBundler::Errors::PluginsNotFoundError,
+        /Version 1.2.3 of foo required. Version 0.0.1 installed.\s+Version 1.2.3 of baz required. Plugin not installed/)
+    end
+  end
 end
