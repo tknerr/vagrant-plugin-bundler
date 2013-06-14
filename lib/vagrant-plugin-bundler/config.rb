@@ -10,6 +10,10 @@ module VagrantPlugins
         @dependencies = {}
       end
 
+      def deps(&block)
+        instance_eval(&block)
+      end
+
       def depend(name, version)
         if @dependencies[name]
           # raise early here because our hook has to run BEFORE validation
