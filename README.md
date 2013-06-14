@@ -4,9 +4,16 @@
 
 This is a [Vagrant](http://www.vagrantup.com) 1.2+ plugin which hooks in before `vagrant up` and `vagrant reload` and ensures that the required vagrant plugins as specified in your Vagrantfile are installed. Think of a minimalist [Bundler](http://gembundler.com) for vagrant plugins.
 
+## Installation
+
+Install using the standard Vagrant 1.1+ plugin installation method:
+```
+$ vagrant plugin install vagrant-plugin-bundler
+```
+
 ## Usage
 
-Install using standard Vagrant 1.1+ plugin installation methods. After installing, you can specify the required plugin dependencies in your `Vagrantfile` like so:
+After installing, you can specify the required plugin dependencies in your `Vagrantfile` like so:
 ```ruby
 Vagrant.configure("2") do |config|
   
