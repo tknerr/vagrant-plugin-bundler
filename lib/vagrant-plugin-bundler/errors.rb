@@ -7,8 +7,8 @@ module VagrantPlugins
         error_namespace("vagrant_plugin_bundler.errors")
       end
 
-      class PluginNotFoundError < VagrantPluginBundlerError
-        error_key(:plugin_not_found)
+      class PluginsNotFoundError < VagrantPluginBundlerError
+        error_key(:plugins_not_found)
       end
 
       class DuplicatePluginDefinitionError < VagrantPluginBundlerError
