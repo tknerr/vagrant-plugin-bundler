@@ -5,7 +5,6 @@ This is a [Vagrant](http://www.vagrantup.com) 1.2+ plugin which hooks in before 
 ## Usage
 
 Install using standard Vagrant 1.1+ plugin installation methods. After installing, you can specify the required plugin dependencies in your `Vagrantfile` like so:
-
 ```ruby
 Vagrant.configure("2") do |config|
   
@@ -51,3 +50,23 @@ Bringing machine 'foo' up with 'virtualbox' provider...
 [foo] Booting VM...
 ...
 ``` 
+
+## Block Syntax
+
+If you have multiple dependencies, you can specify them line by line:
+```ruby
+  # multiple plugin dependencies, one per line
+  config.plugin.depend 'vagrant-omnibus', '1.0.2'
+  config.plugin.depend 'vagrant-cachier', '0.1.0'
+  config.plugin.depend 'vagrant-aws', '0.2.2'
+```
+
+But it reads better if you use the block syntax:
+```ruby
+  # multiple plugin dependencies in a block
+  config.plugin.deps do
+    depend 'vagrant-omnibus', '1.0.2'
+    depend 'vagrant-cachier', '0.1.0'
+    depend 'vagrant-aws', '0.2.2'
+  end
+```
