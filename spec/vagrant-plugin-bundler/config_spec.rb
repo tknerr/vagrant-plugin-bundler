@@ -57,5 +57,16 @@ describe VagrantPlugins::PluginBundler::Config do
         end
       end
     end
+
+    context "when specifying multiple dependencies in a block" do
+      it "should work too" do
+        config.deps do
+          depend 'foo', '1.0'
+          depend 'bar', '2.0'
+        end
+        config.finalize!
+        config.dependencies.should == { 'foo' => '1.0', 'bar' => '2.0' }
+      end
+    end
   end
 end
