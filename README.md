@@ -1,5 +1,7 @@
 # Vagrant PluginBundler Plugin
 
+[![Build Status](https://travis-ci.org/tknerr/vagrant-plugin-bundler.png?branch=master)](https://travis-ci.org/tknerr/vagrant-plugin-bundler)
+
 This is a [Vagrant](http://www.vagrantup.com) 1.2+ plugin which hooks in before `vagrant up` and `vagrant reload` and ensures that the required vagrant plugins as specified in your Vagrantfile are installed. Think of a minimalist [Bundler](http://gembundler.com) for vagrant plugins.
 
 ## Usage
