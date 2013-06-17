@@ -1,4 +1,8 @@
 
+# 0.2.0 [unreleased]
+ 
+* ...
+
 # 0.1.1 [17th June 2013]
 
 * add block syntax for specifying multiple plugin dependencies ([GH-2](https://github.com/tknerr/vagrant-plugin-bundler/issues/2))
