@@ -4,10 +4,12 @@ en:
       plugin_not_found: |-
         Version %{required_version} of %{plugin} required. No version found. 
 
-        => run `vagrant plugin install %{plugin} --plugin-version %{required_version}` to fix this
+        => run `vagrant plugin install %{plugin} --plugin-version %{required_version}` to fix this 
+        %{message}
       plugin_version_error: |-
         Version %{required_version} of %{plugin} required. Found %{installed_version}.
 
-        => run `vagrant plugin install %{plugin} --plugin-version %{required_version}` to fix this
+        => run `vagrant plugin install %{plugin} --plugin-version %{required_version}` to fix this 
+        %{message}
       duplicate_plugin_definition: |-
         Duplicate plugin definition for %{plugin}.
