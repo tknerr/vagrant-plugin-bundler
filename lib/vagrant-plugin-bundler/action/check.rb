@@ -21,21 +21,26 @@ module VagrantPlugins
             @installed_plugins[name]=version
           end
 
-          env[:machine].config.plugin.dependencies.each do |plugin, required_version|
+          env[:machine].config.plugin.dependencies.each do |plugin, settings|
 
+            required_version = settings[:version]
+            #options = settings[:options]
             installed_version = @installed_plugins[plugin]
             
+            require '/Applications/Vagrant/embedded/lib/ruby/gems/1.9.1/gems/awesome_print-1.1.0/lib/awesome_print.rb'
+            #ap options if not options.nil?
+            args = settings.merge(Hash[:required_version => required_version,:plugin => plugin])
+            ap args
+
             unless installed_version
               raise Errors::PluginNotFoundError, 
-                :required_version => required_version, 
-                :plugin => plugin
+                args
             end
             
             if required_version != installed_version
+              args[:installed_version] = installed_version
               raise Errors::PluginVersionError, 
-                :required_version => required_version, 
-                :plugin => plugin,
-                :installed_version => installed_version
+                args
             end
           end       
 
