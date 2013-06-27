@@ -30,7 +30,7 @@ describe VagrantPlugins::PluginBundler::Config do
         config.dependencies.size.should == 1
       end
       it "should contain the specified plugin" do
-        config.dependencies.should == { 'foo' => '1.0.0' }
+        config.dependencies.should == {"foo"=>{:version=>"1.0.0", :message=>""}}
       end
     end
 
@@ -42,7 +42,7 @@ describe VagrantPlugins::PluginBundler::Config do
           config.finalize!
         end
         it "should contain all specified plugins" do
-          config.dependencies.should == { 'foo' => '1.0.0', 'bar' => '1.1.0' }
+          config.dependencies.should == {"foo"=>{:version=>"1.0.0", :message=>""}, "bar"=>{:version=>"1.1.0", :message=>""}}
         end
       end
       context "with same plugin twice" do
@@ -65,7 +65,7 @@ describe VagrantPlugins::PluginBundler::Config do
           depend 'bar', '2.0'
         end
         config.finalize!
-        config.dependencies.should == { 'foo' => '1.0', 'bar' => '2.0' }
+        config.dependencies.should == {"foo"=>{:version=>"1.0", :message=>""}, "bar"=>{:version=>"2.0", :message=>""}}
       end
     end
   end
