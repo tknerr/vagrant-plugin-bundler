@@ -80,6 +80,10 @@ But it reads better if you use the block syntax:
   end
 ```
 
+## Community Resources
+
+You can find resources such as blog posts about Vagrant Plugin Bundler or other projects that use Vagrant Plugin Bundler [here](https://github.com/tknerr/vagrant-plugin-bundler/wiki/Community-Resources).
+
 ## Contributing
 
 1. Fork it
