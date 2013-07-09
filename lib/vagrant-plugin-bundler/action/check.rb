@@ -17,8 +17,13 @@ module VagrantPlugins
           output = `vagrant plugin list`
           
           output.each_line do |line|
-            name, version = line.match(/\s*(\S+)\s*\((\S+)\)/).captures
-            @installed_plugins[name]=version
+            match = line.match(/\s*(\S+)\s*\((\S+)\)/)
+            if not match.nil?
+              name, version = match.captures
+              @installed_plugins[name]=version
+            else
+              raise Errors::PluginVersionError, line
+            end
           end
 
           env[:machine].config.plugin.dependencies.each do |plugin, settings|
