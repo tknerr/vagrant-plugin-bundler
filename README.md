@@ -1,3 +1,13 @@
+# DEPRECATION NOTICE
+
+---
+
+**This plugin will no longer be actively developed, 
+please use https://github.com/fgrehm/vundler instead.**
+
+---
+
+
 # Vagrant PluginBundler Plugin
 
 [![Build Status](https://travis-ci.org/tknerr/vagrant-plugin-bundler.png?branch=master)](https://travis-ci.org/tknerr/vagrant-plugin-bundler)
