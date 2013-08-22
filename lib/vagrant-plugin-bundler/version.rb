@@ -1,5 +1,5 @@
 module VagrantPlugins
   module PluginBundler
-    VERSION = "0.2.0.dldi"
+    VERSION = "0.2.1.dldi"
   end
 end

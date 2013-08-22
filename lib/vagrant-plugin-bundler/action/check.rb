@@ -17,12 +17,11 @@ module VagrantPlugins
           output = `vagrant plugin list`
           
           output.each_line do |line|
-            match = line.match(/\s*(\S+)\s*\((\S+)\)/)
-            if not match.nil?
-              name, version = match.captures
+            begin
+              name, version = line.match(/\s*(\S+)\s*\((\S+)\)/).captures
               @installed_plugins[name]=version
-            else
-              raise Errors::PluginVersionError, line
+            rescue => exc
+              # Prob not a plugin
             end
           end
 
