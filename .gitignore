@@ -15,3 +15,5 @@ Gemfile.lock
 # Berkshelf
 cookbooks
 Berksfile.lock
+
+.idea
