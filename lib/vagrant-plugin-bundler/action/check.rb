@@ -17,7 +17,7 @@ module VagrantPlugins
           output = `vagrant plugin list`
           
           output.each_line do |line|
-            name, version = line.match(/\s*(\S+)\s*\((\S+)\)/).captures
+            name, version = line.match(/\s*(.+?)\s*\((.+?)\)/).captures
             @installed_plugins[name]=version
           end
 
